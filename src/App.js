@@ -16,7 +16,6 @@ class App extends Component {
     return (
       <div className="App">
         <Button type="primary">hello</Button>
-
       </div>
     );
   }

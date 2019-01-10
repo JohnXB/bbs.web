@@ -4,8 +4,8 @@ import App from '../App';
 import Hello from '../component/homePage';
 
 const setTitle = (title) => {
-    console.log(title)
-    document.title = title;
+    document.title = document.title +" " + title;
+    console.log(document.title)
 }
 
 class BbsRouter extends Component {
@@ -14,7 +14,7 @@ class BbsRouter extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Route exact path="/" component={App} onEnter={setTitle("BBS首页")}></Route>
+                    <Route exact path="/" component={App} onEnter={setTitle("首页")}></Route>
                     <Route path="/h/:id" component={Hello} ></Route>
                 </div>
             </BrowserRouter>

@@ -1,0 +1,97 @@
+
+#header {
+    display: flex;
+    justify-content: center;
+    border-top: 0.18rem solid #1296db;
+    box-shadow: 0px 0.125rem 0.625rem 0 rgba(0, 0, 0, 0.1), 0 0.0675rem rgba(0, 0, 0, 0.1);
+    background: #fafafa;
+}
+
+#wrapper {
+    height: 4rem;
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+/*logo样式*/
+#logo a {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+#logo > a > .logo {
+    height: 2rem;
+}
+
+#logo > a > img, h2 {
+    margin: 0.125rem;
+}
+
+#logo > a > h2:hover {
+    color: #1296db;
+}
+
+/*菜单样式*/
+#menu > ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+}
+
+#menu > ul > li > a {
+    display: table-cell;
+    vertical-align: middle;
+    height: 2rem;
+    color: #757575;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.125rem;
+}
+
+#menu > ul > li a:hover, #header_info > #unlogin > a:hover {
+    background-color: #F3F3F3;
+}
+
+#menu > ul > li > .on_visit {
+    color: #1296db;
+    font-weight: 600;
+}
+
+#search {
+    padding: 0 1.4rem;
+}
+
+#header_info > #unlogin {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#header_info > #unlogin > a {
+    text-decoration: none;
+    line-height: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0 0.75rem;
+    border-radius: 0.25rem;
+}
+#header_info > #unlogin > #login{
+    color: #1296db;
+}
+#header_info > #unlogin > #register{
+    color: #ffffff;
+    background-color: #1296db;
+}
+#header_info > #unlogin >#register:hover{
+     background-color: #056db9;
+}
+#header_info> #logged_in{
+    align-items: center;
+}

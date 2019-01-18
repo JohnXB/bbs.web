@@ -46,13 +46,12 @@ class UserRouter extends Component {
             <div>
                 <Route path="/" component={Header}></Route>
                 <Switch>
-
                     <Route path='/' exact render={() => (
                         <Redirect to="/index"/>
                     )}/>
                     <Route exact path="/index" component={App} onChange={setTitle("首页")}></Route>
                     <Route exact path="/index/h/:id" component={Hello}
-                           onChange={setTitle("hello")}></Route>
+                           onChange={setTitle("")}></Route>
                     <Route component={NotMatch}/>
                 </Switch>
                 <Route path="/" component={Footer}></Route>

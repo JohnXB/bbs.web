@@ -20,6 +20,7 @@
     width: auto;
     display: flex;
     align-items: center;
+    padding: 15px;
 }
 
 #logo > a > .logo {
@@ -45,6 +46,7 @@
 #menu > ul > li > a {
     display: table-cell;
     vertical-align: middle;
+    text-decoration: none;
     height: 2rem;
     color: #757575;
     font-size: 1.1rem;

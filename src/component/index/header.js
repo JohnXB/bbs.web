@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Modal, Button} from 'antd';
+import {Input, Modal, Button, message, Avatar} from 'antd';
 import services from "../../service/service"
 import '../../css/index/header.css'
 import logo from '../../public/logo.png'
@@ -13,15 +13,36 @@ class Header extends Component {
         this.state = {
             username: "",
             password: "",
-            head: "../images/logo.png",
+            avatar: null,
             visible: false,
             login: "none",
-            not_login: "flex"
+            not_login: "flex",
+            clickMenu: -1,
+            loading: false
         }
     }
 
-    handleVisit = (e) => {
+    componentDidMount() {
+        if(window.localStorage.token!=null){
+            services.Bbs.GetUser().then(ret => {
+                this.setState({
+                    username: ret.data.data.username,
+                    avatar: ret.data.data.avatar,
+                    login: "flex",
+                    not_login: "none",
+                    visible: false
+                })
+            }).catch(ret => {
 
+            })
+        }
+
+    }
+
+    handleVisit = (value) => {
+        this.setState({
+            clickMenu: value
+        })
     }
     showModal = () => {
         this.setState({
@@ -38,7 +59,6 @@ class Header extends Component {
                 username: e.target.value
             }
         )
-        e.target()
     }
     setPassword = (e) => {
         this.setState({
@@ -47,8 +67,52 @@ class Header extends Component {
         )
     }
     handleLogout = () => {
+        window.localStorage.clear();
+        this.setState({
+            username: "",
+            password: "",
+            avatar: null,
+            visible: false,
+            login: "none",
+            not_login: "flex",
+            clickMenu: -1,
+            loading: false
+        })
+    }
+    handleLogin = () => {
+
+        //加载中按钮
+        this.setState({
+            loading: true
+        })
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        services.Bbs.Login(data).then(ret => {
+            let localStorage = window.localStorage
+            localStorage.token = ret.data.data.currentToken;
+            this.setState({
+                username: ret.data.data.username,
+                avatar: ret.data.data.avatar,
+                login: "flex",
+                not_login: "none",
+                visible: false
+            })
+
+            console.log(localStorage)
+            this.setState({
+                loading: false
+            })
+        }).catch(ret => {
+            console.log(ret)
+            this.setState({
+                loading: false
+            })
+        })
 
     }
+
 
     render() {
         return (
@@ -62,10 +126,14 @@ class Header extends Component {
                     </div>
                     <div id="menu">
                         <ul>
-                            <li><Link to="/index" onClick={this.handleVisit}>主页</Link></li>
-                            <li><Link to="/">文章</Link></li>
-                            <li><Link to="/">问答</Link></li>
-                            <li><Link to="/">我的</Link></li>
+                            <li><Link to="/index" onClick={this.handleVisit.bind(this, 0)}
+                                      className={this.state.clickMenu == 0 ? 'on_visit' : ''}>主页</Link></li>
+                            <li><Link to="/index/h/2" onClick={this.handleVisit.bind(this, 1)}
+                                      className={this.state.clickMenu == 1 ? 'on_visit' : ''}>文章</Link></li>
+                            <li><Link to="/" onClick={this.handleVisit.bind(this, 2)}
+                                      className={this.state.clickMenu == 2 ? 'on_visit' : ''}>问答</Link></li>
+                            <li><Link to="/" onClick={this.handleVisit.bind(this, 3)}
+                                      className={this.state.clickMenu == 3 ? 'on_visit' : ''}>我的</Link></li>
                         </ul>
                     </div>
                     <div id="search">
@@ -77,7 +145,10 @@ class Header extends Component {
                             <Link to='/register' id="register">注册</Link>
                         </div>
                         <div id="logged_in" className="logged_in" style={{display: this.state.login}}>
-                            <img className="avatar" src={logo}/>&nbsp;
+
+                            <Avatar style={{ backgroundColor: '#0590db' }}>{this.state.username[0]}</Avatar>
+
+                            &nbsp;
                             <span className="name">{this.state.username}</span>
                             <span className="splitor">&nbsp;|&nbsp;</span>
                             <a id="logout" className="logout" onClick={this.handleLogout}>退出</a>
@@ -88,7 +159,8 @@ class Header extends Component {
                             onCancel={this.handleCancel}
                             footer={[
                                 <Button key="cancel" onClick={this.handleCancel}>取消</Button>,
-                                <Button key="submit" type="primary" onClick={this.handleLogin}>
+                                <Button key="submit" type="primary" loading={this.state.loading}
+                                        onClick={this.handleLogin}>
                                     登录
                                 </Button>,
                             ]}

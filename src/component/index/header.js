@@ -35,6 +35,7 @@ class Header extends Component {
             }).catch(ret => {
 
             })
+            window.localStorage.clear()
         }
 
     }
@@ -121,7 +122,7 @@ class Header extends Component {
                     <div id="logo">
                         <a>
                             <img src={logo} className="logo"></img>
-                            <h2>东篱</h2>
+                            <h2><Link to="/index">东篱</Link></h2>
                         </a>
                     </div>
                     <div id="menu">
@@ -140,10 +141,10 @@ class Header extends Component {
                         <Search enterButton allowClear placeholder="请输入关键字!"/>
                     </div>
                     <div id="header_info">
-                        <div id="unlogin" style={{display: this.state.not_login}}>
-                            <a id="login" onClick={this.showModal}>登录</a>&nbsp;
-                            <Link to='/register' id="register">注册</Link>
-                        </div>
+                        <ul id="unlogin" style={{display: this.state.not_login}}>
+                            <li><a id="login" onClick={this.showModal}>登录</a></li>
+                            <li><Link to='/register' id="register">注册</Link></li>
+                        </ul>
                         <div id="logged_in" className="logged_in" style={{display: this.state.login}}>
 
                             <Avatar style={{ backgroundColor: '#0590db' }}>{this.state.username[0]}</Avatar>

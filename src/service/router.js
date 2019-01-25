@@ -6,6 +6,7 @@ import Header from "../component/index/header";
 import Footer from "../component/index/footer";
 import AdminIndex from "../component/admin/adminIndex";
 import NotMatch from "../component/index/notMatch"
+import Register from "../component/user/register";
 
 const setTitle = (title) => {
     document.title = "东篱" + title;
@@ -52,6 +53,7 @@ class UserRouter extends Component {
                     <Route exact path="/index" component={App} onChange={setTitle("首页")}></Route>
                     <Route exact path="/index/h/:id" component={Hello}
                            onChange={setTitle("")}></Route>
+                    <Route path="/register" component={Register} onEnter={setTitle("注册")}></Route>
                     <Route component={NotMatch}/>
                 </Switch>
                 <Route path="/" component={Footer}></Route>

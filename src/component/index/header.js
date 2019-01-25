@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Modal, Button, message, Avatar} from 'antd';
+import {Input, Modal, Button, Dropdown, Avatar, Menu,Icon} from 'antd';
 import services from "../../service/service"
 import '../../css/index/header.css'
 import logo from '../../public/logo.png'
@@ -23,7 +23,7 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        if(window.localStorage.token!=null){
+        if (window.localStorage.token != null) {
             services.Bbs.GetUser().then(ret => {
                 this.setState({
                     username: ret.data.data.username,
@@ -33,9 +33,8 @@ class Header extends Component {
                     visible: false
                 })
             }).catch(ret => {
-
+                window.localStorage.clear()
             })
-            window.localStorage.clear()
         }
 
     }
@@ -137,8 +136,13 @@ class Header extends Component {
                                       className={this.state.clickMenu == 3 ? 'on_visit' : ''}>我的</Link></li>
                         </ul>
                     </div>
-                    <div id="search">
+                    <div id="action">
                         <Search enterButton allowClear placeholder="请输入关键字!"/>
+                        <Link to="/aaa" id="createArticle">
+                            <Button>
+                                创建
+                            </Button>
+                        </Link>
                     </div>
                     <div id="header_info">
                         <ul id="unlogin" style={{display: this.state.not_login}}>
@@ -146,13 +150,31 @@ class Header extends Component {
                             <li><Link to='/register' id="register">注册</Link></li>
                         </ul>
                         <div id="logged_in" className="logged_in" style={{display: this.state.login}}>
+                            <Dropdown overlay=
+                                          {
+                                              <Menu>
+                                                  <Menu.Item>
+                                                      <a target="_blank" rel="noopener noreferrer"
+                                                         href="http://www.alipay.com/">{this.state.username}</a>
+                                                  </Menu.Item>
+                                                  <Menu.Item>
+                                                      <a target="_blank" rel="noopener noreferrer"
+                                                         href="http://www.taobao.com/">2nd menu item</a>
+                                                  </Menu.Item>
+                                                  <Menu.Item>
+                                                      <a id="logout" className="logout" onClick={this.handleLogout} style={{color:"red"}}>退出</a>
+                                                  </Menu.Item>
 
-                            <Avatar style={{ backgroundColor: '#0590db' }}>{this.state.username[0]}</Avatar>
+                                              </Menu>
+                                          }>
+                                <Avatar size={40} style={{backgroundColor: '#0590db'}}>{this.state.username[0]}</Avatar>
+                            </Dropdown>
+
 
                             &nbsp;
                             <span className="name">{this.state.username}</span>
                             <span className="splitor">&nbsp;|&nbsp;</span>
-                            <a id="logout" className="logout" onClick={this.handleLogout}>退出</a>
+
                         </div>
                         <Modal
                             title="登录"
@@ -167,11 +189,11 @@ class Header extends Component {
                             ]}
                         >
                             <div style={{marginBottom: "20px"}}>
-                                <span>用户名:</span> <Input placeholder="请输入用户名" onChange={this.setUserName}
+                                <span>用户名:</span> <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}placeholder="请输入用户名" onChange={this.setUserName}
                                                          className="username" style={{width: "80%"}}/>
                             </div>
                             <div>
-                                <span>密&nbsp;&nbsp;&nbsp;&nbsp;码:</span> <Input placeholder="请输入密码"
+                                <span>密&nbsp;&nbsp;&nbsp;码:</span> <Input.Password placeholder="请输入密码"
                                                                                 onChange={this.setPassword}
                                                                                 type="password" className="password"
                                                                                 style={{width: "80%"}}/>

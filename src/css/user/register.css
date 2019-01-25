@@ -1,0 +1,81 @@
+.register{
+    padding-top: 60px;
+}
+.active {
+    margin:0 auto;
+    margin-bottom: 1.5rem;
+    height: 37px;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+    font-size: 34px;
+    color: #707070;
+    font-weight: 100;
+}
+.active:hover{
+    color: #000;
+}
+.form_list {
+    border-radius:2% ;
+    background-color: #fffffc;
+    border: 0.05rem solid #1296db;
+    box-shadow: 0 0.125rem 0.625rem 0 rgba(0, 0, 0, 0.1), 0 0.0675rem rgba(0, 0, 0, 0.1);
+    margin:0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 25rem;
+}
+.form_list li{
+    margin: 0 auto;
+    list-style-type:none;
+    min-height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+
+}
+.form_list li>span{
+    display: flex;
+    width: 100%;
+    min-height: 1.5rem;
+    color: red;
+    font-size: 1rem;
+    padding-left: 2.45rem;
+    padding-right: 2.45rem;
+}
+
+.form_list li>div{
+    width: 15rem;
+}
+.form_list li input {
+    width: 15rem;
+    font-size: 14px;
+}
+.input_label {
+    width: 5rem;
+    display: inline-block;
+    color: #616161;
+    font-size: 1rem;
+    white-space: nowrap;
+
+}
+
+.bt_css {
+    display: block;
+    margin: auto;
+    width: 20rem;
+    height: 50px;
+    line-height: 50px;
+    border: 0;
+    background: #006ff2;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+.error_info{
+    visibility: hidden;
+}

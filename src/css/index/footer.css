@@ -31,41 +31,6 @@ p, ul, ol {
     margin: 0 auto;
 }
 
-.description, .contact_us,.wx_qrcode {
-    vertical-align: top;
-    display: inline-block;
-}
-
-.description .key_words {
-    font-size: 20px;
-    color: #58a6e7;
-}
-
-.description .key_word.simple {
-    background-image: url(../../public/icon_simple.png);
-}
-
-.description .key_word.easy {
-    background-image: url('../../public/icon_easy.png');
-}
-
-.description .key_word.free {
-    background-image: url('../../public/icon_free.png');
-}
-
-.description .key_word {
-    line-height: 24px;
-    display: inline-block;
-    padding: 15px 0 15px 60px;
-    margin-right: 20px;
-}
-
-.description .slogan {
-    margin-top: 22px;
-    color: #999;
-    font-size: 22px;
-}
-
 .contact_us {
     width: 230px;
     margin-top: -6px;

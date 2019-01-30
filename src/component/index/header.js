@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Modal, Button, Dropdown, Avatar, Menu,Icon} from 'antd';
+import {Input, Modal, Button, Dropdown, Avatar, Menu, Icon} from 'antd';
 import services from "../../service/service"
 import '../../css/index/header.css'
 import logo from '../../public/logo.png'
@@ -18,7 +18,7 @@ class Header extends Component {
             login: "none",
             not_login: "flex",
             clickMenu: -1,
-            loading: false
+            loading: false,
         }
     }
 
@@ -119,21 +119,21 @@ class Header extends Component {
             <div id="header">
                 <div id="wrapper">
                     <div id="logo">
-                        <a>
+                        <Link to="/index">
                             <img src={logo} className="logo"></img>
                             <h2><Link to="/index">东篱</Link></h2>
-                        </a>
+                        </Link>
                     </div>
                     <div id="menu">
                         <ul>
                             <li><Link to="/index" onClick={this.handleVisit.bind(this, 0)}
-                                      className={this.state.clickMenu == 0 ? 'on_visit' : ''}>主页</Link></li>
+                                      className={this.state.clickMenu === 0 ? 'on_visit' : ''}>主页</Link></li>
                             <li><Link to="/index/h/2" onClick={this.handleVisit.bind(this, 1)}
-                                      className={this.state.clickMenu == 1 ? 'on_visit' : ''}>文章</Link></li>
+                                      className={this.state.clickMenu === 1 ? 'on_visit' : ''}>文章</Link></li>
                             <li><Link to="/" onClick={this.handleVisit.bind(this, 2)}
-                                      className={this.state.clickMenu == 2 ? 'on_visit' : ''}>问答</Link></li>
+                                      className={this.state.clickMenu === 2 ? 'on_visit' : ''}>问答</Link></li>
                             <li><Link to="/" onClick={this.handleVisit.bind(this, 3)}
-                                      className={this.state.clickMenu == 3 ? 'on_visit' : ''}>我的</Link></li>
+                                      className={this.state.clickMenu === 3 ? 'on_visit' : ''}>我的</Link></li>
                         </ul>
                     </div>
                     <div id="action">
@@ -162,7 +162,8 @@ class Header extends Component {
                                                          href="http://www.taobao.com/">2nd menu item</a>
                                                   </Menu.Item>
                                                   <Menu.Item>
-                                                      <a id="logout" className="logout" onClick={this.handleLogout} style={{color:"red"}}>退出</a>
+                                                      <a id="logout" className="logout" onClick={this.handleLogout}
+                                                         style={{color: "red"}}>退出</a>
                                                   </Menu.Item>
 
                                               </Menu>
@@ -189,14 +190,15 @@ class Header extends Component {
                             ]}
                         >
                             <div style={{marginBottom: "20px"}}>
-                                <span>用户名:</span> <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}placeholder="请输入用户名" onChange={this.setUserName}
+                                <span>用户名:</span> <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                                         placeholder="请输入用户名" onChange={this.setUserName}
                                                          className="username" style={{width: "80%"}}/>
                             </div>
                             <div>
                                 <span>密&nbsp;&nbsp;&nbsp;码:</span> <Input.Password placeholder="请输入密码"
-                                                                                onChange={this.setPassword}
-                                                                                type="password" className="password"
-                                                                                style={{width: "80%"}}/>
+                                                                                   onChange={this.setPassword}
+                                                                                   type="password" className="password"
+                                                                                   style={{width: "80%"}}/>
                             </div>
                         </Modal>
                     </div>

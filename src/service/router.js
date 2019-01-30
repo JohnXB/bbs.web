@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom'
 import App from '../App';
-import Hello from '../component/index/homePage';
+import HomePage from '../component/index/homePage';
 import Header from "../component/index/header";
 import Footer from "../component/index/footer";
 import AdminIndex from "../component/admin/adminIndex";
@@ -22,8 +22,6 @@ class BbsRouter extends Component {
                         window.location.pathname.startsWith("/admin") ?
                             <AdminRouter/>
                             : <UserRouter/>
-
-
                     }
                 </div>
             </BrowserRouter>
@@ -50,8 +48,8 @@ class UserRouter extends Component {
                     <Route path='/' exact render={() => (
                         <Redirect to="/index"/>
                     )}/>
-                    <Route exact path="/index" component={App} onChange={setTitle("首页")}></Route>
-                    <Route exact path="/index/h/:id" component={Hello}
+                    <Route exact path="/index" component={HomePage} onChange={setTitle("首页")}></Route>
+                    <Route exact path="/index/h/:id" component={App}
                            onChange={setTitle("")}></Route>
                     <Route path="/register" component={Register} onEnter={setTitle("注册")}></Route>
                     <Route component={NotMatch}/>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-import services from "../../service/service"
+// import services from "../../service/service"
 
 class AdminIndex extends Component{
     render() {

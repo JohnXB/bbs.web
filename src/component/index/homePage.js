@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Button} from 'antd';
 import {Link} from 'react-router-dom'
 import services from "../../service/service"
 
-class Hello extends Component {
+class HomePage extends Component {
     componentDidMount() {
-       // console.log(this.props.match.params.id);
+        // console.log(this.props.match.params.id);
         console.log(window.location.pathname)
         services.Bbs.GetArticle(1).then(ret => {
             console.log(ret)
@@ -14,13 +14,16 @@ class Hello extends Component {
         })
 
     };
+
     render() {
         return (
-            <div className="App">
-                <Link to="/admin">asdasdas</Link>
+            <div className="content">
+                <div className="content_left"></div>
+                <div className="content_middle"></div>
+                <div className="content_right"></div>
             </div>
         );
     }
 }
 
-export default Hello;
+export default HomePage;

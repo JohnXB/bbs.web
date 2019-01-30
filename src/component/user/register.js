@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import "../../css/user/register.css"
-import {Radio, message, Input,Button} from 'antd';
+import {Radio, message, Input, Button} from 'antd';
 import services from "../../service/service"
 import Particles from 'reactparticles.js';
-
+import {Redirect} from 'react-router-dom'
 const RadioGroup = Radio.Group;
 const mailReg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
 const phoneReg = new RegExp("^[1][3,4,5,7,8][0-9]{9}$")
@@ -25,6 +25,7 @@ class Register extends Component {
             checkMail: false,
             checkNewPass: false,
             confirmPass: false,
+            loading: false,
             //错误提示
             errorUsername: "",
             errorPass: "",
@@ -35,15 +36,16 @@ class Register extends Component {
     }
 
     handleSignUp = () => {
+
         if (!this.state.confirmPass) {
             message.error("请保持2次密码一致");
             return
         }
-        if (this.state.checkPass ||this.state.checkPass ||this.state.checkNewPass ||this.state.checkMail ||this.state.checkPhone) {
+        if (this.state.checkPass || this.state.checkPass || this.state.checkNewPass || this.state.checkMail || this.state.checkPhone) {
             message.error("请输入正确用户信息！")
             return
         }
-        else if (this.state.username==="" ||this.state.password ==="" ||this.state.message==="" ||this.state.phone==="") {
+        else if (this.state.username === "" || this.state.password === "" || this.state.message === "" || this.state.phone === "") {
             message.error("请输入用户信息！")
             return
         }
@@ -55,14 +57,25 @@ class Register extends Component {
             gender: this.state.gender,
             phone: this.state.phone
         };
-        console.log(data)
-        services.Questionnaire.SignUp(data).then(ret => {
-            let data = ret.data
-            message.info(data.message);
+        this.setState({
+            loading: true
+        })
 
+
+        services.Bbs.Register(data).then(ret => {
+            let data = ret.data
+            this.setState({
+                loading: false
+            })
+            message.success(data.message);
+            this.props.history.push("/index")
         }).catch(ret => {
             console.log(ret)
+            this.setState({
+                loading: false
+            })
         })
+
     }
     setUserName = (e) => {
         let _username = e.target.value
@@ -146,6 +159,20 @@ class Register extends Component {
         if (_pass.length === 0) {
             this.setState({
                 errorPass: "密码不能为空",
+                checkPass: true
+            })
+            return
+        }
+        else if (_pass.length < 6) {
+            this.setState({
+                errorPass: "密码不能小于6位",
+                checkPass: true
+            })
+            return
+        }
+        if (_pass.length > 16) {
+            this.setState({
+                errorPass: "密码不能大于16位",
                 checkPass: true
             })
             return
@@ -242,9 +269,13 @@ class Register extends Component {
                             </span>
                             </li>
                         </ul>
-                        <Button className="bt_css" type="primary" onClick={this.handleSignUp}>
-                            立即注册
-                        </Button>
+                        <div className="registerBtn">
+                            <Button className="bt_css" type="primary" loading={this.state.loading}
+                                    onClick={this.handleSignUp}>
+                                立即注册
+                            </Button>
+                        </div>
+
 
                     </div>
                 </div>

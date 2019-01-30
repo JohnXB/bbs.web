@@ -43,6 +43,7 @@ export default class Service {
         static Login =(data,params={})=>Service.businessService.post("/auth/login",data,params)
         static GetArticle = ( data,params = {}) => Service.businessService.get(`/common/article/${data}`);
         static GetUser = ( data,params = {}) => Service.businessService.post("/auth/userInfo");
+        static Register=(data,params={})=>Service.businessService.post("/auth/register",data,params);
         // static SignUp = ( data,params = {}) => Service.businessService.post("/User/SignUp", data, params);
         // static GetClassfications = (data, options = {}) => Service.businessService.get("/Classification/A01");
         // static GetQuestionnaire = (data, options = {}) => Service.businessService.get(`/Questionnaire/A01?id=${data}`);

@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
-import {Button} from 'antd';
-import services from "../../service/service"
+import 'ant-design-pro/dist/ant-design-pro.css';
+import {Exception} from 'ant-design-pro';
 
-class NotMatch extends Component{
+class NotMatch extends Component {
+
+
     render() {
         return (
-            <div>
-                <Button type="primary">找不到该页面</Button>
-            </div>
+            <Exception type={404} backText={"返回首页"}/>
 
         )
     }
 }
+
 export default NotMatch;

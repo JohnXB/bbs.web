@@ -214,7 +214,7 @@ class Register extends Component {
                     <div className="form_list">
                         <div className="active signin">东篱网注册</div>
                         <input type="hidden" name="_xsrf"/>
-                        {/*<Particles id="test-particles" config="my-particles.json"/>*/}
+                        <Particles id="test-particles" config="my-particles.json"/>
                         <ul>
                             <li>
                                 <label className="input_label">用户名:</label>

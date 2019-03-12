@@ -5,6 +5,7 @@ import HomePage from '../component/index/homePage';
 import Header from "../component/index/header";
 import Footer from "../component/index/footer";
 import AdminIndex from "../component/admin/adminIndex";
+import AdminLogin from "../component/admin/adminLogin"
 import NotMatch from "../component/index/notMatch"
 import Register from "../component/user/register";
 
@@ -33,7 +34,9 @@ class AdminRouter extends Component {
     render() {
         return (
             <Switch>
-                <Route path="/admin" component={AdminIndex} onChange={setTitle("后台管理")}></Route>
+                <Route exact path="/admin/login" component={AdminLogin} onChange={setTitle("后台登录")}></Route>
+                <Route exact path="/admin" component={AdminIndex} onChange={setTitle("后台管理")}></Route>
+                <Route component={NotMatch}/>
             </Switch>
         )
     }

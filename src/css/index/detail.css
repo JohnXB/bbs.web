@@ -1,0 +1,136 @@
+.article__authorleft {
+    position: absolute;
+}
+
+.avatar-40 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.article__authorright {
+    float: right;
+    padding-left: 50px;
+    width: 100%;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.mr5, .mr-5 {
+    margin-right: 5px !important;
+}
+
+a, a:hover, a:active, a:focus {
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+    font-size: 15px;
+}
+
+#articleTitle {
+    font-size: 40px;
+    line-height: 42px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.post-topheader__info--title {
+    margin: 0 0 10px 0;
+    width: 100%;
+}
+
+.comments-box {
+    width: 100%;
+    background: #FAFAFA;
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.09);
+    border-radius: 2px 2px 0px 0px;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+    margin-top: -1px;
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.avatar-32 {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.comments-box-content {
+    padding-left: 47px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42858;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.mt15, .mt-15 {
+    margin-top: 15px !important;
+}
+
+.text-right {
+    text-align: right;
+}
+ .comments-content {
+    padding-left: 47px;
+}
+.comments-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.comments-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.comment-trigger {
+    margin: 0;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.fmt {
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+.mb10, .mb-10 {
+    margin-bottom: 10px !important;
+}
+.ml15, .ml-15 {
+    margin-left: 15px !important;
+}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Modal, Button, Dropdown, Avatar, Menu, Icon} from 'antd';
+import {Input, Modal, Button, Dropdown, Avatar, Menu, Icon, message, Badge,Divider} from 'antd';
 import services from "../../service/service"
 import '../../css/index/header.css'
 import logo from '../../public/logo.png'
@@ -17,8 +17,9 @@ class Header extends Component {
             visible: false,
             login: "none",
             not_login: "flex",
-            clickMenu: -1,
+            clickMenu: 0,
             loading: false,
+            messages: []
         }
     }
 
@@ -34,6 +35,17 @@ class Header extends Component {
                 })
             }).catch(ret => {
                 window.localStorage.clear()
+            })
+            services.Bbs.GetMessages().then(ret => {
+                console.log(ret.data.data)
+            }).catch(ret => {
+
+            })
+            services.Bbs.GetMessages().then(ret => {
+                console.log(ret.data.data.list)
+                this.setState({
+                    messages: ret.data.data.list
+                })
             })
         }
 
@@ -78,9 +90,12 @@ class Header extends Component {
             clickMenu: -1,
             loading: false
         })
+        if (window.localStorage.token === undefined) {
+            window.location.href = "/index"
+            return
+        }
     }
     handleLogin = () => {
-
         //加载中按钮
         this.setState({
             loading: true
@@ -99,8 +114,6 @@ class Header extends Component {
                 not_login: "none",
                 visible: false
             })
-
-            console.log(localStorage)
             this.setState({
                 loading: false
             })
@@ -110,9 +123,22 @@ class Header extends Component {
                 loading: false
             })
         })
+        // services.Bbs.GetMessages().then(ret => {
+        //     console.log(ret.data.data.list)
+        //     this.setState({
+        //         messages: ret.data.data.list
+        //     })
+        // })
 
     }
 
+    handleCreate = () => {
+        if (window.localStorage.token === undefined) {
+            message.error("请先登录！");
+            return
+        }
+        else window.location.href = "/create"
+    }
 
     render() {
         return (
@@ -128,21 +154,21 @@ class Header extends Component {
                         <ul>
                             <li><Link to="/index" onClick={this.handleVisit.bind(this, 0)}
                                       className={this.state.clickMenu === 0 ? 'on_visit' : ''}>主页</Link></li>
-                            <li><Link to="/index/h/2" onClick={this.handleVisit.bind(this, 1)}
+                            <li><Link to="/articles" onClick={this.handleVisit.bind(this, 1)}
                                       className={this.state.clickMenu === 1 ? 'on_visit' : ''}>文章</Link></li>
-                            <li><Link to="/" onClick={this.handleVisit.bind(this, 2)}
+                            <li><Link to="/questions" onClick={this.handleVisit.bind(this, 2)}
                                       className={this.state.clickMenu === 2 ? 'on_visit' : ''}>问答</Link></li>
-                            <li><Link to="/" onClick={this.handleVisit.bind(this, 3)}
+                            <li><Link to="/userInfo" onClick={this.handleVisit.bind(this, 3)}
                                       className={this.state.clickMenu === 3 ? 'on_visit' : ''}>我的</Link></li>
                         </ul>
                     </div>
                     <div id="action">
                         <Search enterButton allowClear placeholder="请输入关键字!"/>
-                        <Link to="/aaa" id="createArticle">
-                            <Button>
-                                创建
-                            </Button>
-                        </Link>
+                        {/*<Link to="/create" id="createArticle">*/}
+                        <Button onClick={this.handleCreate} id="createArticle">
+                            创建
+                        </Button>
+                        {/*</Link>*/}
                     </div>
                     <div id="header_info">
                         <ul id="unlogin" style={{display: this.state.not_login}}>
@@ -150,16 +176,35 @@ class Header extends Component {
                             <li><Link to='/register' id="register">注册</Link></li>
                         </ul>
                         <div id="logged_in" className="logged_in" style={{display: this.state.login}}>
+                            <Dropdown trigger={['click']} overlay={
+                                <Menu>
+                                    <Menu.Divider></Menu.Divider>
+                                    {
+                                        this.state.messages.map((item, i) => {
+                                            return(
+                                                <Menu.Item key={i}>
+                                                    {item.baUsername}{item.bacUsername}{item.bfUsername}{item.blUsername}在{item.createdAt}{item.content}"{item.title}"
+                                                </Menu.Item>
+                                            )
+                                        })
+                                    }
+
+                                </Menu>
+                            }>
+                                <Badge count={this.state.messages.length}>
+                                    <a href=""><Icon type="mail" style={{fontSize: '28px', color: '#9E9E9E'}}/></a>
+                                </Badge>
+                            </Dropdown>
+
                             <Dropdown overlay=
                                           {
                                               <Menu>
                                                   <Menu.Item>
-                                                      <a target="_blank" rel="noopener noreferrer"
-                                                         href="http://www.alipay.com/">{this.state.username}</a>
+                                                     {this.state.username}
+                                                      <Divider style={{margin: 0}}/>
                                                   </Menu.Item>
                                                   <Menu.Item>
-                                                      <a target="_blank" rel="noopener noreferrer"
-                                                         href="http://www.taobao.com/">2nd menu item</a>
+                                                      2nd menu item
                                                   </Menu.Item>
                                                   <Menu.Item>
                                                       <a id="logout" className="logout" onClick={this.handleLogout}
@@ -168,14 +213,15 @@ class Header extends Component {
 
                                               </Menu>
                                           }>
-                                <Avatar size={40} style={{backgroundColor: '#0590db'}}>{this.state.username[0]}</Avatar>
+                                <Avatar size={50} style={{
+                                    backgroundColor: '#0590db',
+                                    marginLeft: "20px"
+                                }}>{this.state.username[0]}</Avatar>
                             </Dropdown>
 
 
                             &nbsp;
-                            <span className="name">{this.state.username}</span>
-                            <span className="splitor">&nbsp;|&nbsp;</span>
-
+                            <span className="username">{this.state.username}</span>
                         </div>
                         <Modal
                             title="登录"

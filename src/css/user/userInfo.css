@@ -1,0 +1,122 @@
+.profile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile__heading {
+    background-color: #f6f6f6;
+    padding: 40px 0 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 970px;
+}
+.profile__heading .header-pic, .profile__heading .header-info {
+    display: inline-block;
+    vertical-align: text-top;
+}
+.profile__heading .header-pic {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+}
+.profile__heading .header-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.profile__heading .header-info {
+    margin-left: 40px;
+}
+
+.profile__heading .header-info h2 {
+    font-size: 30px;
+}
+
+.profile__heading .header-info .prestige {
+    font-size: 20px;
+}
+
+.profile__heading .header-info .userInfo {
+    font-size: 14px;
+}
+
+.profile__heading .header-info .userInfo>div {
+    margin: 5px 0
+}
+
+.menu-container {
+    padding: 20px 40px;
+    width: 970px;
+}
+
+.menu {
+    width: 190px;
+    display: inline-block;
+}
+
+.menu-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu-header>div {
+    width: 50%;
+    text-align: center;
+}
+
+.menu-header>div:last-child {
+    border-left: 1px solid #eee;
+}
+
+.menu-header>div>p:first-child {
+    color: #777;
+    font-size: 16px;
+}
+
+.menu-header>div>p:last-child {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.menu-body {
+    margin-top: 20px;
+}
+
+.menu-body>.menuItem {
+    height: 34px;
+    padding: 0 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-body>.menuItem:hover {
+    color: #1296db;
+    background: #F0F5F3;
+}
+
+.menu-body>.menuItem>span {
+    line-height: 34px;
+    font-size: 14px;
+}
+
+.menu-body>.menuItem.item-active {
+    color: #1296db;
+    background: #F0F5F3;
+}
+
+.menu-body>.menuItem>span:last-child {
+    float: right;
+}
+
+.menu-body>.menuItem>span:first-child {
+    float: left;
+}
